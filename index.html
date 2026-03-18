@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV World News | #имеюсказать — О проекте</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Geologica:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --green: #00e676;
+    --green-dim: #00c853;
+    --gray: #1a1a1a;
+    --gray-mid: #2a2a2a;
+    --text-muted: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Geologica', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+  }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; }
+  .logo span { color: var(--green); }
+  .header-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,230,118,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 900px; animation: fadeUp 0.8s ease both; }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(0,230,118,0.3);
+    padding: 6px 16px; margin-bottom: 40px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 10vw, 120px);
+    line-height: 0.9; letter-spacing: 2px; margin-bottom: 40px;
+  }
+  .hero-title .accent { color: var(--green); display: block; }
+  .hero-desc { font-size: 18px; line-height: 1.7; color: rgba(245,245,240,0.7); max-width: 600px; margin-bottom: 60px; }
+  .hero-links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 28px;
+    font-family: 'Geologica', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px;
+    text-decoration: none; transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--green); color: var(--black); }
+  .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+  .btn-secondary { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.2); }
+  .btn-secondary:hover { border-color: var(--green); color: var(--green); transform: translateY(-2px); }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,230,118,0.3), transparent); margin: 0 40px; }
+  .section { padding: 100px 40px; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--green); margin-bottom: 20px; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 64px); letter-spacing: 2px; margin-bottom: 40px; line-height: 1; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .about-text p { font-size: 16px; line-height: 1.8; color: rgba(245,245,240,0.7); margin-bottom: 20px; }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .stats-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .stat-card { background: var(--gray); padding: 40px 32px; text-align: center; }
+  .stat-number { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--green); line-height: 1; margin-bottom: 8px; }
+  .stat-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+  .service-card { background: var(--gray); padding: 40px 32px; transition: background 0.2s; }
+  .service-card:hover { background: var(--gray-mid); }
+  .service-number { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: rgba(0,230,118,0.2); line-height: 1; margin-bottom: 20px; }
+  .service-title { font-size: 15px; font-weight: 500; margin-bottom: 12px; letter-spacing: 0.5px; }
+  .service-desc { font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+  .tech-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+  .tech-badge { font-size: 11px; letter-spacing: 1px; padding: 5px 12px; background: rgba(0,230,118,0.08); border: 1px solid rgba(0,230,118,0.2); color: var(--green); }
+  .platforms-section { padding: 100px 40px; background: var(--gray); }
+  .platforms-inner { max-width: 1100px; margin: 0 auto; }
+  .platforms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 60px; }
+  .platform-card { background: var(--black); padding: 40px 24px; text-align: center; text-decoration: none; color: var(--white); transition: all 0.2s; display: block; }
+  .platform-card:hover { background: var(--gray-mid); transform: translateY(-4px); }
+  .platform-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+  .platform-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; margin-bottom: 8px; color: var(--green); }
+  .platform-handle { font-size: 12px; color: var(--text-muted); letter-spacing: 1px; }
+  .legal-section { padding: 100px 40px; max-width: 1100px; margin: 0 auto; }
+  .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 40px; }
+  .legal-card { background: var(--gray); padding: 40px 32px; }
+  .legal-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .legal-value { font-size: 18px; font-weight: 500; color: var(--white); line-height: 1.4; }
+  .contact-section { padding: 100px 40px; background: var(--gray); text-align: center; }
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+  .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 6vw, 80px); letter-spacing: 2px; margin-bottom: 20px; line-height: 1; }
+  .contact-desc { font-size: 16px; color: rgba(245,245,240,0.6); margin-bottom: 40px; line-height: 1.7; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+  .contact-details { display: flex; flex-direction: column; gap: 10px; }
+  .contact-detail { font-size: 14px; color: var(--text-muted); }
+  .contact-detail a { color: var(--green); text-decoration: none; }
+  footer { padding: 30px 40px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: var(--text-muted); }
+  .footer-copy { font-size: 12px; color: var(--text-muted); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) {
+    header { padding: 16px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .section { padding: 60px 20px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .platforms-grid { grid-template-columns: repeat(2, 1fr); }
+    .legal-grid { grid-template-columns: 1fr; }
+    .platforms-section, .contact-section { padding: 60px 20px; }
+    .legal-section { padding: 60px 20px; }
+    footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">EV World News <span>|</span> #имеюсказать</div>
+  <div class="header-tag">Медиапроект · Беларусь</div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">О проекте</div>
+    <h1 class="hero-title">
+      Электромобильные
+      <span class="accent">новости</span>
+    </h1>
+    <p class="hero-desc">
+      EV World News — независимый медиапроект об электромобилях, зарядной инфраструктуре и энергетическом переходе. Мы используем автоматизированные инструменты для обработки и публикации актуального контента из мировых источников.
+    </p>
+    <div class="hero-links">
+      <a href="https://t.me/imeyuskazat_evnews" target="_blank" class="btn btn-primary">Telegram-канал</a>
+      <a href="https://www.instagram.com/imeyuskazat_evnews" target="_blank" class="btn btn-secondary">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-label">О нас</div>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">Что мы делаем</h2>
+      <div class="about-text">
+        <p>EV World News — медиапроект, специализирующийся на новостях рынка электромобилей. Мы агрегируем, обрабатываем и публикуем контент из международных источников на русском языке.</p>
+        <p>Проект использует <strong>автоматизированный технологический стек</strong> для сбора новостей, их обработки с помощью искусственного интеллекта и публикации в социальных сетях — Telegram и Instagram.</p>
+        <p>Мы предоставляем технические услуги по автоматизации публикации контента через API социальных платформ, включая Instagram Graph API.</p>
+      </div>
+    </div>
+    <div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-number">4</div><div class="stat-label">Платформы</div></div>
+        <div class="stat-card"><div class="stat-number">10+</div><div class="stat-label">Новостей в день</div></div>
+        <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Мониторинг</div></div>
+        <div class="stat-card"><div class="stat-number">RU</div><div class="stat-label">Язык контента</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <div class="section-label">Технологии</div>
+  <h2 class="section-title">Как работает проект</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-number">01</div>
+      <div class="service-title">Агрегация новостей</div>
+      <div class="service-desc">Автоматический сбор новостей об электромобилях из международных RSS-источников через систему автоматизации n8n.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">02</div>
+      <div class="service-title">Обработка ИИ</div>
+      <div class="service-desc">Каждая новость обрабатывается языковыми моделями: перевод, редактирование, оценка значимости и форматирование для публикации.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-number">03</div>
+      <div class="service-title">Автопубликация</div>
+      <div class="service-desc">Готовый контент автоматически публикуется через официальные API платформ, включая Instagram Graph API и Telegram Bot API.</div>
+    </div>
+  </div>
+  <div class="tech-list">
+    <span class="tech-badge">n8n</span>
+    <span class="tech-badge">Instagram Graph API</span>
+    <span class="tech-badge">Telegram Bot API</span>
+    <span class="tech-badge">OpenAI</span>
+    <span class="tech-badge">Claude AI</span>
+    <span class="tech-badge">RSS</span>
+    <span class="tech-badge">Google Drive API</span>
+  </div>
+</div>
+
+<section class="platforms-section">
+  <div class="platforms-inner">
+    <div class="section-label">Присутствие</div>
+    <h2 class="section-title">Наши платформы</h2>
+    <div class="platforms-grid">
+      <a href="https://t.me/imeyuskazat_evnews" target="_blank" class="platform-card">
+        <span class="platform-icon">✈️</span>
+        <div class="platform-name">Telegram</div>
+        <div class="platform-handle">@imeyuskazat_evnews</div>
+      </a>
+      <a href="https://www.instagram.com/imeyuskazat_evnews" target="_blank" class="platform-card">
+        <span class="platform-icon">📸</span>
+        <div class="platform-name">Instagram</div>
+        <div class="platform-handle">@imeyuskazat_evnews</div>
+      </a>
+      <a href="viber://chat?number=%2B375295170067" class="platform-card">
+        <span class="platform-icon">💬</span>
+        <div class="platform-name">Viber</div>
+        <div class="platform-handle">+375 29 517 00 67</div>
+      </a>
+      <a href="https://www.tiktok.com/@imeyuskazat_evnews" target="_blank" class="platform-card">
+        <span class="platform-icon">🎵</span>
+        <div class="platform-name">TikTok</div>
+        <div class="platform-handle">@imeyuskazat_evnews</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="legal-section">
+  <div class="section-label">Юридические данные</div>
+  <h2 class="section-title">Реквизиты</h2>
+  <div class="legal-grid">
+    <div class="legal-card">
+      <div class="legal-label">Наименование</div>
+      <div class="legal-value">ИП Кривцов Артём Георгиевич</div>
+    </div>
+    <div class="legal-card">
+      <div class="legal-label">УНП</div>
+      <div class="legal-value">391423584</div>
+    </div>
+    <div class="legal-card">
+      <div class="legal-label">Страна регистрации</div>
+      <div class="legal-value">Республика Беларусь</div>
+    </div>
+    <div class="legal-card">
+      <div class="legal-label">Вид деятельности</div>
+      <div class="legal-value">Медиапроект, автоматизация публикации контента</div>
+    </div>
+  </div>
+</div>
+
+<section class="contact-section">
+  <div class="contact-inner">
+    <div class="section-label" style="text-align:center;">Контакты</div>
+    <h2 class="contact-title">Связаться с нами</h2>
+    <p class="contact-desc">По вопросам сотрудничества, рекламы и партнёрства — пишите в любой удобный канал связи.</p>
+    <div class="contact-links">
+      <a href="https://t.me/imeyuskazat_evnews" target="_blank" class="btn btn-primary">Telegram</a>
+      <a href="viber://chat?number=%2B375295170067" class="btn btn-secondary">Viber</a>
+    </div>
+    <div class="contact-details">
+      <div class="contact-detail">📧 <a href="mailto:krivtsoff@icloud.com">krivtsoff@icloud.com</a></div>
+      <div class="contact-detail">📱 <a href="tel:+375295170067">+375 29 517 00 67</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">EV World News</div>
+  <div class="footer-copy">© 2025 ИП Кривцов А.Г. · УНП 391423584 · Республика Беларусь</div>
+</footer>
+
+</body>
+</html>
